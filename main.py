@@ -1,4 +1,4 @@
-from solver import solve_kl_divergence, bin_maker, graph_masker, solve_bins, solve_total
+from solver import solve_kl_divergence, bin_maker, graph_masker
 import graph_reader as gr
 import networkx as nx
 import matplotlib.pyplot as plt
