@@ -1,4 +1,4 @@
-from solver import bin_maker, graph_masker
+from bipartitioner import bin_maker, graph_masker
 import networkx as nx
 import matplotlib.pyplot as plt
 
@@ -33,7 +33,7 @@ def visualise_bins(solution, graph, bin_number):
 
     bin_labels = [f"{low:.2f}-{high:.2f}" for low, high in bins]
     x = range(len(bins))
-    width = 0.4  # Bar width
+    width = 0.4
 
     plt.figure(figsize=(10, 6))
     plt.bar(x, bin_counts_0, width=width, label="Subarray 0", alpha=0.7)

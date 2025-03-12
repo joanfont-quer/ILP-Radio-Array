@@ -1,6 +1,6 @@
-from solver import solve_kl_divergence
-from visualise import *
-import graph_reader as gr
+from bipartitioner import solve_kl_divergence
+from visualisation import *
+import graph_loader as gr
 import time
 
 
