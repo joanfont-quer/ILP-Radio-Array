@@ -3,6 +3,17 @@ from Partitioner.utils import *
 
 
 def setup(graph, subarray_number):
+    """
+    Sets up used variables in the problem.
+    Args:
+        graph: Networkx graph of all antennas.
+        subarray_number: Number of subarrays we want to split the graph into.
+
+    Returns:
+        model: Initialised gurobi model.
+        y: Dictionary of binary variables y[i, s] is 1 is antenna 'i' is in subarray 's', 0 otherwise.
+        n: Number of antennas.
+    """
     n = len(graph.nodes)
 
     model = Model("RadioArrayDivider")
@@ -11,13 +22,13 @@ def setup(graph, subarray_number):
 
     y = model.addVars(n, subarray_number, vtype=GRB.BINARY, name="y")
 
-    # antenna 'i' can only be assigned to one subarray
+    # antenna 'i' can only be assigned to one subarray.
     model.addConstrs(
         (quicksum(y[i, s] for s in range(subarray_number)) == 1 for i in range(n)),
         name="node_constraint"
     )
 
-    # forces the first antenna to be in the first subarray, which breaks the subarray symmetry
+    # forces the first antenna to be in the first subarray, which breaks subarray symmetry.
     model.addConstr(y[0, 0] == 1, name="symmetry_break_constraint")
 
     model.update()
@@ -25,6 +36,18 @@ def setup(graph, subarray_number):
 
 
 def sum_edges(graph, model, y, b, subarray_number):
+    """
+    Computes the sum of active edges within each subarray.
+    Args:
+        graph: Networkx graph of all antennas, with edge weights either 1 if active or 0 if inactive.
+        model: Gurobi model.
+        y: Dictionary of binary variables y[i, s] is 1 is antenna 'i' is in subarray 's', 0 otherwise.
+        b: Bin being processed. b = [a, b], where a and b are where the bin starts and finishes respectively.
+        subarray_number: Number of subarrays we want to split the graph into.
+
+    Returns:
+        sum_vars: Dictionary of variables representing the sum of active edges within each subarray.
+    """
     active_edges = [(i, j) for i, j, d in graph.edges(data=True) if d['weight'] > 0]
 
     sum_vars = model.addVars(range(subarray_number), lb=0, name=f"sum_var_{b[0]}_{b[1]}")
@@ -39,6 +62,18 @@ def sum_edges(graph, model, y, b, subarray_number):
 
 
 def solve_bins(graph, bin_number, subarray_number):
+    """
+    Solves the optimisation problem of partitioning the graph into subarrays where all subarrays have as close to the
+    same number of nodes in each baseline bin as possible.
+    Args:
+        graph: Networkx graph of all antennas.
+        bin_number: Number of bins we are partitioning the baselines into.
+        subarray_number: Number of subarrays we want to split the graph into.
+
+    Returns:
+        subarrays: Dictionary mapping each node to its assigned subarray.
+        cost: Final objective value of the solution.
+    """
     model, y, n = setup(graph, subarray_number)
     bins = bin_maker(graph, bin_number)
 

@@ -5,7 +5,7 @@ import time
 
 
 def main():
-    graph, positions = gr.generate_graph(20, 20)
+    graph, positions = gr.read_tsp_file("Problems/berlin52.tsp")
 
     bin_number = 10
     subarray_number = 3

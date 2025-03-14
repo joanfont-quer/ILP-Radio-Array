@@ -4,7 +4,7 @@ import networkx as nx
 
 def euclidean_distance(u, v):
     """
-    Calculates the Euclidean distance between two positions.
+    Calculates the Euclidean distance between two positions using einsum.
     Args:
         u: position one
         v: position two
