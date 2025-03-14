@@ -5,9 +5,9 @@ import time
 
 
 def main():
-    graph, positions = gr.generate_graph(40, 20)
+    graph, positions = gr.generate_graph(20, 20)
 
-    bin_number = 5
+    bin_number = 10
     subarray_number = 3
 
     start = time.time()

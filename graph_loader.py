@@ -3,15 +3,33 @@ import networkx as nx
 
 
 def euclidean_distance(u, v):
-    x1, y1 = u
-    x2, y2 = v
+    """
+    Calculates the Euclidean distance between two positions.
+    Args:
+        u: position one
+        v: position two
 
-    dist = np.sqrt((x1 - x2)**2 + (y1 - y2)**2)
+    Returns:
+        dist: Euclidean distance between u and v
+    """
+    u = np.array(u)
+    v = np.array(v)
+
+    diff = u - v
+    dist = np.sqrt(np.einsum('i,i->', diff, diff))
     return dist
 
 
 def euclidean_weight_assigner(graph, positions):
-    # Assign graph weights by Eucledian distances between positions
+    """
+    Assign weights to graph edges according to the Euclidean distance between nodes.
+    Args:
+        graph: networkx graph without edge weights
+        positions: list of node positions in the x and y coordinates
+
+    Returns:
+        graph: networkx graph with edge weights
+    """
     for i, j in graph.edges:
         # Calculate Euclidean distance between nodes i and j
         dist = euclidean_distance(positions[i], positions[j])
@@ -22,10 +40,11 @@ def euclidean_weight_assigner(graph, positions):
 def read_tsp_file(file_name):
     """
     Generates a graph from a given file with positional data for the nodes.
-    parameters:
-        file_name (str): Name of the file.
+    Args:
+        file_name: Name of the file.
+
     returns:
-        graph (networkx.Graph): A graph with nodes and weighted edges.
+        graph: networkx graph
     """
     with open(file_name) as f:
         lines = f.read().strip().split('\n')
@@ -45,18 +64,28 @@ def read_tsp_file(file_name):
     n = len(positions)
     graph = nx.complete_graph(n)
 
-    # Assign graph weights by Eucledian distances between positions
+    # Assign graph weights by Euclidean distances between positions
     graph = euclidean_weight_assigner(graph, positions)
     return graph, positions
 
 
-def generate_graph(city_num, seed):
+def generate_graph(node_num, seed=np.random.randint(1, 10000)):
+    """
+    Generate a random graph in Euclidean space given the number of nodes
+    Args:
+        node_num: number of nodes the graph should have
+        seed: numpy seed for reproducibility, if no seed is provided, generate a random seed
+
+    Returns:
+        graph: networkx graph
+        positions: list of node positions in the x and y coordinates
+    """
     np.random.seed(seed)
     positions = {i: (np.random.uniform(0, 100), np.random.uniform(0, 100))
-                 for i in range(city_num)}
-    graph = nx.complete_graph(city_num)
+                 for i in range(node_num)}
+    graph = nx.complete_graph(node_num)
 
-    # Assign graph weights by Eucledian distances between positions
+    # Assign graph weights by Euclidean distances between positions
     graph = euclidean_weight_assigner(graph, positions)
 
     return graph, positions
