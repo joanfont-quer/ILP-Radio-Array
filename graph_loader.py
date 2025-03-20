@@ -89,3 +89,15 @@ def generate_graph(node_num, seed=np.random.randint(1, 10000)):
     graph = euclidean_weight_assigner(graph, positions)
 
     return graph, positions
+
+
+def generate_graph_gaussian(node_num, seed=np.random.randint(1, 10000)):
+    np.random.seed(seed)
+    positions = {i: (np.random.normal(0, 1), np.random.normal(0, 1))
+                 for i in range(node_num)}
+    graph = nx.complete_graph(node_num)
+
+    # Assign graph weights by Euclidean distances between positions
+    graph = euclidean_weight_assigner(graph, positions)
+
+    return graph, positions

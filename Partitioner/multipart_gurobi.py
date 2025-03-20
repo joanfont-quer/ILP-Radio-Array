@@ -4,7 +4,7 @@ from Partitioner.utils import *
 
 def setup(graph, subarray_number):
     """
-    Sets up used variables in the problem.
+    Sets up model and decision variables in the problem.
     Args:
         graph: Networkx graph of all antennas.
         subarray_number: Number of subarrays we want to split the graph into.
@@ -33,8 +33,6 @@ def setup(graph, subarray_number):
 
     # each subarray should have at least one baseline
     model.addConstrs(quicksum(y[i, s] for i in range(n)) >= 2 for s in range(subarray_number))
-
-    model.update()
     return model, y, n
 
 
@@ -64,12 +62,11 @@ def sum_edges(graph, model, y, b, subarray_number):
     return sum_vars
 
 
-def sum_baselines_sq(graph, model, y, subarray_number):
+def sum_baselines_sq(edge_weights_sq, model, y, subarray_number):
     sum_vars = model.addVars(range(subarray_number), lb=0, name="sum_vars")
 
     model.addConstrs(
-        (sum_vars[s] == quicksum((graph[i][j]["weight"] ** 2) * y[i, s] * y[j, s]
-                                             for i, j in graph.edges())
+        (sum_vars[s] == quicksum(sq_weight * y[i, s] * y[j, s] for (i, j), sq_weight in edge_weights_sq.items())
          for s in range(subarray_number)), name="squared_baseline_sums")
     return sum_vars
 
@@ -122,10 +119,26 @@ def solve_bins(graph, bin_number, subarray_number):
     return subarrays, cost
 
 
+def precompute_graph_edges(graph):
+    edge_weights_sq = {(i, j): (d["weight"] ** 2) for i, j, d in graph.edges(data=True)}
+
+    edge_weights_log = {(i, j): np.log(d["weight"]) for i, j, d in graph.edges(data=True)}
+    return edge_weights_sq, edge_weights_log
+
+
+def precompute_pwl_breakpoints(max_weight, num_breakpoints):
+    sigma_upper_bound = max_weight / np.sqrt(2)
+    sigma_points = np.linspace(1e-4, sigma_upper_bound, num_breakpoints)
+    ln_points = np.log(sigma_points)
+    return sigma_points.tolist(), ln_points.tolist()
+
+
 def solve_kl(graph, subarray_number):
     model, y, n = setup(graph, subarray_number)
 
-    d_sums = sum_baselines_sq(graph, model, y, subarray_number)
+    edge_weights_sq, edge_weights_log = precompute_graph_edges(graph)
+
+    d_sums = sum_baselines_sq(edge_weights_sq, model, y, subarray_number)
     num_edge_sums = sum_edges(graph, model, y, [1, 1], subarray_number)
 
     scale_parameters = model.addVars(range(subarray_number), lb=0, name="sigma_mll")
@@ -134,19 +147,17 @@ def solve_kl(graph, subarray_number):
                      for s in range(subarray_number)), name="sigma_mll_definition")
 
     max_weight = max(data["weight"] for i, j, data in graph.edges(data=True))
-    scale_parameters_upper_bound = max_weight / np.sqrt(2)
-    sigma_points = np.linspace(1e-4, scale_parameters_upper_bound, 100)
-    ln_points = [np.log(x) for x in sigma_points]
+    sigma_points, ln_points = precompute_pwl_breakpoints(max_weight, 50)
 
     log_scale_params = model.addVars(range(subarray_number), lb=-GRB.INFINITY, name="log_sigma_mll")
     for s in range(subarray_number):
         model.addGenConstrPWL(scale_parameters[s], log_scale_params[s],
-                               sigma_points.tolist(), ln_points,
+                               sigma_points, ln_points,
                                name="pwl_log_sigma")
 
     nll_terms = []
     for s in range(subarray_number):
-        log_sum = quicksum(np.log(graph[i][j]["weight"]) * y[i, s] * y[j, s] for i, j in graph.edges())
+        log_sum = quicksum(log_weight * y[i, s] * y[j, s] for (i, j), log_weight in edge_weights_log.items())
         nll_terms.append(2 * num_edge_sums[s] * log_scale_params[s] + num_edge_sums[s] - log_sum)
 
     nll_total = quicksum(nll_terms)
@@ -158,10 +169,10 @@ def solve_kl(graph, subarray_number):
 
     diff = model.addVar(lb=0, name="diff")
     model.addConstr(diff >= sigma_max - sigma_min, name=f"diff_constr")
-    model.update()
 
     model.setObjective(diff + nll_total, GRB.MINIMIZE)
     model.setParam("Threads", 8)
+    model.setParam("Cuts", 2)
     model.optimize()
 
     subarrays = {}

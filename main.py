@@ -1,11 +1,11 @@
 from Partitioner.multipart_gurobi import solve_kl
 from visualisation import *
-import graph_loader as gr
+import graph_loader as gl
 import time
 
 
 def main():
-    graph, positions = gr.read_tsp_file("Problems/berlin52.tsp")
+    graph, positions = gl.generate_graph_gaussian(40, 20)
 
     bin_number = 10
     subarray_number = 2
