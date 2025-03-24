@@ -2,6 +2,7 @@ from Partitioner.bipartitioner import bin_maker, graph_masker
 import networkx as nx
 import matplotlib.pyplot as plt
 import numpy as np
+import time
 
 
 def visualise_sol(solution, positions, graph):
@@ -11,6 +12,7 @@ def visualise_sol(solution, positions, graph):
     nx.draw(graph, positions, node_color=colour_map, with_labels=False, node_size=250, edgelist=[])
     nx.draw_networkx_labels(graph, positions, font_color='white')
     plt.show()
+    plt.savefig(f"Results/graph_partition_{time.time()}.png")
 
 
 def visualise_bins(solution, graph, bin_number, subarray_number):
@@ -44,3 +46,4 @@ def visualise_bins(solution, graph, bin_number, subarray_number):
     plt.legend()
     plt.grid(axis="y", linestyle="--", alpha=0.6)
     plt.show()
+    plt.savefig(f"Results/baseline_histogram_{time.time()}.png")

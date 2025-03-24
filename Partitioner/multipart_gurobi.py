@@ -106,7 +106,8 @@ def solve_bins(graph, bin_number, subarray_number):
     model.update()
 
     model.setObjective(quicksum(diff_vars), GRB.MINIMIZE)
-    model.setParam("Threads", 8)
+    model.setParam("Threads", 24)
+    model.setParam("Cuts", 2)
     model.optimize()
 
     subarrays = {}
@@ -171,7 +172,7 @@ def solve_kl(graph, subarray_number):
     model.addConstr(diff >= sigma_max - sigma_min, name=f"diff_constr")
 
     model.setObjective(diff + nll_total, GRB.MINIMIZE)
-    model.setParam("Threads", 8)
+    model.setParam("Threads", 24)
     model.setParam("Cuts", 2)
     model.optimize()
 
