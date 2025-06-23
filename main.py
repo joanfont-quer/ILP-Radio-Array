@@ -1,8 +1,9 @@
+import time
+
 from Partitioner.multipart_gurobi import solve_kl, solve_bins
 from Partitioner.multipart_heuristic import solver
 from visualisation import *
 import graph_loader as gl
-import time
 
 
 def main():
