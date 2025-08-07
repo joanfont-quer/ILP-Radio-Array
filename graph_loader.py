@@ -93,6 +93,16 @@ def generate_graph(node_num, seed=np.random.randint(1, 10000)):
 
 
 def generate_graph_gaussian(node_num, seed=np.random.randint(1, 10000)):
+    """Generate a random graph in Euclidean space with the nodes distributed according to a Gaussian.
+
+    Args:
+        node_num (int): Desired number of nodes in the graph.
+        seed (int, optional): Random seed to utilise. Defaults to np.random.randint(1, 10000).
+
+    Returns:
+        graph: networkx graph
+        positions: list of node positions in the x and y coordinates
+    """
     np.random.seed(seed)
     positions = {i: (np.random.normal(0, 1), np.random.normal(0, 1))
                  for i in range(node_num)}
