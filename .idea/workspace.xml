@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b785d18e-b379-4763-9cc6-1de858a01200" name="Changes" comment="Commit">
+      <change beforePath="$PROJECT_DIR$/Partitioner/multipart_gurobi.py" beforeDir="false" afterPath="$PROJECT_DIR$/Partitioner/multipart_gurobi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Partitioner/multipart_heuristic.py" beforeDir="false" afterPath="$PROJECT_DIR$/Partitioner/multipart_heuristic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Partitioner/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/Partitioner/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Results/baseline_histogram_1742577804.6295502.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Results/baseline_histogram_1742577859.233394.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Results/graph_partition_1742577803.935005.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Results/graph_partition_1742577858.5902805.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/graph_loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/graph_loader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualisation.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualisation.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;joanfont-quer&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/joanfont-quer/ILP-Radio-Array.git&quot;,
+    &quot;accountId&quot;: &quot;7d8a27f6-10ba-4588-85b1-2c88d5472b51&quot;
+  }
+}</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/main.py" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2uGcDziiaFGaPYOfQAPRNN81rJ2" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.bipartitioner_heuristic.executor&quot;: &quot;Run&quot;,
+    &quot;Python.graph_loader.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.multipart_gurobi.executor&quot;: &quot;Run&quot;,
+    &quot;Python.probability_stuff.executor&quot;: &quot;Run&quot;,
+    &quot;Python.read_vla_pdf.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ILP-Radio-Array" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-09060db00ec0-JavaScript-PY-251.26927.74" />
+        <option value="bundled-python-sdk-657d8234b839-64d779b69b7a-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-251.26927.74" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b785d18e-b379-4763-9cc6-1de858a01200" name="Changes" comment="" />
+      <created>1741878235652</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1741878235652</updated>
+      <workItem from="1741878236902" duration="1328000" />
+      <workItem from="1741879584649" duration="189000" />
+      <workItem from="1741879937815" duration="402000" />
+      <workItem from="1741880350558" duration="1673000" />
+      <workItem from="1741883611615" duration="6670000" />
+      <workItem from="1741956452869" duration="92000" />
+      <workItem from="1741956600980" duration="98000" />
+      <workItem from="1741961103488" duration="9228000" />
+      <workItem from="1742383732960" duration="14223000" />
+      <workItem from="1742400626267" duration="974000" />
+      <workItem from="1742469032887" duration="301000" />
+      <workItem from="1742470933716" duration="1611000" />
+      <workItem from="1742482474326" duration="63000" />
+      <workItem from="1742488527858" duration="107000" />
+      <workItem from="1742489882192" duration="669000" />
+      <workItem from="1742825972318" duration="5947000" />
+      <workItem from="1742922178846" duration="41000" />
+      <workItem from="1743685247088" duration="55000" />
+      <workItem from="1743685467148" duration="199000" />
+      <workItem from="1749221982697" duration="68000" />
+      <workItem from="1751629928612" duration="43000" />
+      <workItem from="1751630007004" duration="395000" />
+      <workItem from="1751630531810" duration="9481000" />
+      <workItem from="1751898592938" duration="12638000" />
+      <workItem from="1752149153596" duration="19598000" />
+      <workItem from="1752470652936" duration="1252000" />
+      <workItem from="1752496112383" duration="1141000" />
+      <workItem from="1753265425563" duration="43485000" />
+      <workItem from="1753789554606" duration="2000" />
+      <workItem from="1753794590789" duration="3217000" />
+      <workItem from="1754571642165" duration="507000" />
+    </task>
+    <task id="LOCAL-00001" summary="Commit">
+      <option name="closed" value="true" />
+      <created>1741951440417</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1741951440418</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Commit">
+      <option name="closed" value="true" />
+      <created>1741956689485</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1741956689485</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Commit">
+      <option name="closed" value="true" />
+      <created>1742488545193</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1742488545193</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Commit">
+      <option name="closed" value="true" />
+      <created>1742490375673</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1742490375673</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/ILP_Radio_Array$probability_stuff.coverage" NAME="probability_stuff Coverage Results" MODIFIED="1741968988087" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ILP_Radio_Array$test.coverage" NAME="test Coverage Results" MODIFIED="1753282695551" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ILP_Radio_Array$graph_loader.coverage" NAME="graph_loader Coverage Results" MODIFIED="1752238206936" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ILP_Radio_Array$bipartitioner_heuristic.coverage" NAME="bipartitioner_heuristic Coverage Results" MODIFIED="1742399846978" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Partitioner" />
+    <SUITE FILE_PATH="coverage/ILP_Radio_Array$read_vla_pdf.coverage" NAME="read_vla_pdf Coverage Results" MODIFIED="1741968635851" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ILP_Radio_Array$main.coverage" NAME="main Coverage Results" MODIFIED="1753782007584" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ILP_Radio_Array$multipart_gurobi.coverage" NAME="multipart_gurobi Coverage Results" MODIFIED="1752238564366" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Partitioner" />
+  </component>
+</project>
