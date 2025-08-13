@@ -1,6 +1,12 @@
-from ska_ost_array_config.array_config import MidSubArray
-from utils import describe_subarray
+from pathlib import Path
+import pandas as pd
 
+pd.set_option('display.max_columns', None)
+pd.set_option('display.width', None)
 
-template = MidSubArray(subarray_type="custom", custom_stations="M000,M001,M002")
-describe_subarray(template, 5, 2, 1, 1)
+METADATA_FILE = Path("metadata.parquet")
+SOLUTIONS_FILE = Path("solutions.npz")
+
+df = pd.read_parquet(METADATA_FILE)
+print(df)
+

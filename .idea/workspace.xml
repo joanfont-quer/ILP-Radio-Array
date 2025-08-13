@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b785d18e-b379-4763-9cc6-1de858a01200" name="Changes" comment="Changed main.py to quantify the effect of different amounts of nodes and subarrays.">
+    <list default="true" id="b785d18e-b379-4763-9cc6-1de858a01200" name="Changes" comment="Updated environment.yml file.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/environment.yml" beforeDir="false" afterPath="$PROJECT_DIR$/environment.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +62,8 @@
     "Python.test.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "database.data.extractors.current.export.id": "Comma-separated (CSV)_id",
+    "database.data.extractors.current.id": "Comma-separated (CSV)_id",
     "git-widget-placeholder": "experiment",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -153,7 +156,7 @@
       <workItem from="1753789554606" duration="2000" />
       <workItem from="1753794590789" duration="3217000" />
       <workItem from="1754571642165" duration="1600000" />
-      <workItem from="1754913542440" duration="14331000" />
+      <workItem from="1754913542440" duration="38057000" />
     </task>
     <task id="LOCAL-00001" summary="Commit">
       <option name="closed" value="true" />
@@ -203,7 +206,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754992255386</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Updated environment.yml file.">
+      <option name="closed" value="true" />
+      <created>1754993676953</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1754993676953</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -236,7 +247,8 @@
     <MESSAGE value="Commit" />
     <MESSAGE value="Added the visualisation technique used in other SKA literature. Also adapted the code to match baseline distributions in lambda space. Now SKA mid is one of the possible graphs in graph_loader.py" />
     <MESSAGE value="Changed main.py to quantify the effect of different amounts of nodes and subarrays." />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed main.py to quantify the effect of different amounts of nodes and subarrays." />
+    <MESSAGE value="Updated environment.yml file." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated environment.yml file." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ILP_Radio_Array$probability_stuff.coverage" NAME="probability_stuff Coverage Results" MODIFIED="1741968988087" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
