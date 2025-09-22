@@ -1,0 +1,87 @@
+Weighting: uniform
+  L1: 1.2680e-02
+  L2: 1.7004e-02
+  Lobe RMS: 1.7004e-02
+Weighting: robust 0
+  L1: 3.6846e-02
+  L2: 4.7745e-02
+  Lobe RMS: 4.7745e-02
+Weighting: natural
+  L1: 2.9152e-02
+  L2: 3.6822e-02
+  Lobe RMS: 3.6822e-02
+
+Solution key: node197_sub2_seed137
+
+Weighting: uniform
+  L1: 1.4870e-02
+  L2: 2.2527e-02
+  Lobe RMS: 2.2374e-02
+Weighting: robust 0
+  L1: 6.2004e-02
+  L2: 8.8128e-02
+  Lobe RMS: 8.6685e-02
+Weighting: natural
+  L1: 3.2522e-01
+  L2: 3.3541e-01
+  Lobe RMS: 3.3541e-01
+
+Solution key: node197_sub2_seed58291
+
+Weighting: uniform
+  L1: 8.8001e-02
+  L2: 1.5852e-01
+  Lobe RMS: 9.2152e-02
+Weighting: robust 0
+  L1: 1.4398e-01
+  L2: 2.6524e-01
+  Lobe RMS: 1.3555e-01
+Weighting: natural
+  L1: 5.9399e-01
+  L2: 6.0873e-01
+  Lobe RMS: 4.7553e-01
+
+Solution key: node197_sub2_seed9021
+
+Weighting: uniform
+  L1: 1.6568e-02
+  L2: 2.5015e-02
+  Lobe RMS: 2.3694e-02
+Weighting: robust 0
+  L1: 6.2607e-02
+  L2: 8.7731e-02
+  Lobe RMS: 8.5062e-02
+Weighting: natural
+  L1: 3.7464e-01
+  L2: 3.8432e-01
+  Lobe RMS: 3.8303e-01
+
+Solution key: node197_sub2_seed47717
+
+Weighting: uniform
+  L1: 3.4055e-01
+  L2: 4.4753e-01
+  Lobe RMS: 4.4753e-01
+Weighting: robust 0
+  L1: 5.2129e-01
+  L2: 5.7644e-01
+  Lobe RMS: 5.7644e-01
+Weighting: natural
+  L1: 8.1409e-01
+  L2: 8.1903e-01
+  Lobe RMS: 8.1903e-01
+
+Solution key: node197_sub2_seed26539
+
+Weighting: uniform
+  L1: 1.7158e-02
+  L2: 2.5849e-02
+  Lobe RMS: 2.5849e-02
+Weighting: robust 0
+  L1: 1.2863e-01
+  L2: 1.3990e-01
+  Lobe RMS: 1.3990e-01
+Weighting: natural
+  L1: 6.9881e-01
+  L2: 7.0257e-01
+  Lobe RMS: 3.9485e-01

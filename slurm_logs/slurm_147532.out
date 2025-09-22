@@ -1,0 +1,19 @@
+/share/nas2_3/jfont/ILP-Radio-Array
+Using license file: /share/nas2_3/jfont/.gurobi/wls.lic
+>>> Activating environment
+>>> Starting job 1
+/share/nas2_3/jfont/miniconda3/envs/ILP-Radio-Array-3.10/lib/python3.10/abc.py:106: FutureWarning: xarray subclass Visibility should explicitly define __slots__
+  cls = super().__new__(mcls, name, bases, namespace, **kwargs)
+Running 1/5: Seed=137
+Traceback (most recent call last):
+  File "/share/nas2_3/jfont/ILP-Radio-Array/main.py", line 80, in <module>
+    main()
+  File "/share/nas2_3/jfont/ILP-Radio-Array/main.py", line 77, in main
+    _, _ = run_optimiser(graph, 2, seed)
+  File "/share/nas2_3/jfont/ILP-Radio-Array/main.py", line 38, in run_optimiser
+    solution, cost = solver(graph, subarray_number, p=1, seed=seed)
+  File "/share/nas2_3/jfont/ILP-Radio-Array/Partitioner/multipart_heuristic.py", line 122, in solver
+    y, unassigned, partition_weights = assign_node(graph, y, unassigned, partition_weights, partition_num, p)
+  File "/share/nas2_3/jfont/ILP-Radio-Array/Partitioner/multipart_heuristic.py", line 77, in assign_node
+    y_temp[node] = partition
+TypeError: 'builtin_function_or_method' object does not support item assignment

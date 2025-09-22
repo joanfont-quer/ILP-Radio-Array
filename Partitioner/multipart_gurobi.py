@@ -96,7 +96,7 @@ def solve_pdf_bins(graph, bin_number, subarray_number):
     model.update()
 
     model.setObjective(quicksum(diff_vars), GRB.MINIMIZE)
-    model.setParam("Threads", 8)
+    model.setParam("Threads", 24)
     model.setParam("Cuts", 3)
     model.optimize()
 
@@ -145,7 +145,7 @@ def solve_cdf_bins(graph, bin_number, subarray_number):
     model.update()
 
     model.setObjective(quicksum(diff_vars), GRB.MINIMIZE)
-    model.setParam("Threads", 8)
+    model.setParam("Threads", 24)
     model.setParam("Cuts", 3)
     model.optimize()
 
@@ -188,7 +188,7 @@ def solve_pdf_bins_lambda(graph, bin_number, subarray_number, frequency_list):
     model.update()
 
     model.setObjective(quicksum(diff_vars), GRB.MINIMIZE)
-    model.setParam("Threads", 8)
+    model.setParam("Threads", 24)
     model.setParam("Cuts", 3)
     model.optimize()
 

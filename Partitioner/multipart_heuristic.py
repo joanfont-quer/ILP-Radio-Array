@@ -21,12 +21,14 @@ def wasserstein(partition_weights, p):
             w_i = np.array(partition_weights[partitions[i]])
             w_j = np.array(partition_weights[partitions[j]])
 
-            if len(w_i) > len(w_j):
+            if len(w_i) == 0 and len(w_j) == 0:
+                continue
+            elif len(w_i) > len(w_j):
                 w_j = np.pad(w_j, (0, len(w_i) - len(w_j)), 'constant')
             elif len(w_j) > len(w_i):
                 w_i = np.pad(w_i, (0, len(w_j) - len(w_i)), 'constant')
 
-            total += np.sum(np.abs(w_i - w_j) ** p) ** (1/p)
+            total += np.mean(np.abs(w_i - w_j) ** p) ** (1/p)
     return total
 
 
@@ -66,12 +68,12 @@ def assign_node(graph, y, unassigned, partition_weights, partition_number, p):
         Tuple: Updated y, unassigned, and partition_weights after assignment.
     """
     best_dist = float('inf')
-    best_assignment = None
+    best_assignment = None, None
     new_partition_weights = None
 
     for node in unassigned:
         for partition in range(partition_number):
-            y_temp = y[:]
+            y_temp = y.copy()
             y_temp[node] = partition
 
             temp_weights = {k: v.copy() for k, v in partition_weights.items()}
@@ -80,7 +82,7 @@ def assign_node(graph, y, unassigned, partition_weights, partition_number, p):
             current_dist = wasserstein(temp_weights, p)
             if current_dist < best_dist:
                 best_dist = current_dist
-                best_assignment = (node, partition)
+                best_assignment = node, partition
                 new_partition_weights = temp_weights
 
     node, partition = best_assignment
@@ -107,7 +109,7 @@ def solver(graph, partition_num, p=1.0, seed=42):
     random.seed(seed)
     unassigned = list(graph.nodes())
 
-    y = [-1] * len(list(graph.nodes()))
+    y = {node: -1 for node in graph.nodes()}
 
     for partition in range(partition_num):
         node = random.choice(unassigned)

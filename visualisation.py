@@ -9,9 +9,8 @@ def visualise_sol(solution, positions, graph):
     cmap = plt.get_cmap("tab10")
     colour_map = [cmap(solution[node] % 10) for node in graph.nodes()]
 
-    nx.draw(graph, positions, node_color=colour_map, with_labels=False, node_size=250, edgelist=[])
-    nx.draw_networkx_labels(graph, positions, font_color='white')
-    plt.savefig(f"Results/graph_partition_{time.time()}.png")
+    nx.draw(graph, positions, node_color=colour_map, with_labels=False, node_size=25, edgelist=[])
+    plt.savefig(f"/share/nas2_3/jfont/ILP-Radio-Array/Results/graph_partition_{time.time()}.png")
 
 
 def visualise_bins(solution, graph, bin_number, subarray_number):

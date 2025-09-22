@@ -1,12 +1,13 @@
-from Partitioner.multipart_gurobi import solve_pdf_bins
+from random import seed
+from Partitioner.multipart_heuristic import solver
 import graph_loader as gl
 import numpy as np
 import pandas as pd
 import time
 from pathlib import Path
 
-METADATA_FILE = Path("metadata.parquet")
-SOLUTIONS_FILE = Path("solutions.npz")
+METADATA_FILE = Path(f"/share/nas2_3/jfont/ILP-Radio-Array/metadata_heuristic_ska_full.parquet")
+SOLUTIONS_FILE = Path(f"/share/nas2_3/jfont/ILP-Radio-Array/solutions_heuristic_ska_full.npz")
 
 
 def append_metadata(metadata):
@@ -32,20 +33,18 @@ def compute_bin_number(graph, subarray_number, edge_number_per_bin=6):
     return bin_number
 
 
-def run_optimiser(graph, subarray_number, node_number, seed):
+def run_optimiser(graph, subarray_number, seed):
     start = time.time()
-    bin_number = compute_bin_number(graph, subarray_number)
-    solution, cost = solve_pdf_bins(graph, bin_number, subarray_number)
+    solution, cost = solver(graph, subarray_number, p=1, seed=seed)
     end = time.time()
 
-    sol_key = f"node{node_number}_sub{subarray_number}_seed{seed}"
+    sol_key = f"node{len(list(graph.nodes()))}_sub{subarray_number}_seed{seed}"
     append_solution(sol_key, solution)
 
     metadata = {
         "seed": seed,
-        "node_num": node_number,
+        "node_num": len(list(graph.nodes())),
         "subarray_number": subarray_number,
-        "bin_number": bin_number,
         "cost": cost,
         "optimisation_time": end - start,
         "solution_key": sol_key
@@ -58,26 +57,24 @@ def run_optimiser(graph, subarray_number, node_number, seed):
 def main():
     seeds = [137, 58291, 9021, 47717, 26539]
 
-    all_runs = [(node_number, subarray_number, seed)
-                for node_number in range(4, 83)
-                for subarray_number in range(2, 5)
+
+    all_runs = [(seed)
                 for seed in seeds
-                if 2 * subarray_number <= node_number
                 ]
 
     if METADATA_FILE.exists():
         done_df = pd.read_parquet(METADATA_FILE)
-        done_set = set(zip(done_df.node_num, done_df.subarray_number, done_df.seed))
+        done_set = set(zip(done_df.node_num, done_df.seed))
     else:
         done_set = set()
 
     runs_to_do = [run for run in all_runs if run not in done_set]
     total_runs = len(runs_to_do)
 
-    for i, (node_number, subarray_number, seed) in enumerate(runs_to_do, start=1):
-        print(f"Running {i}/{total_runs}: node={node_number}, sub={subarray_number}, seed={seed}")
-        graph, _ = gl.generate_graph(node_number, seed)
-        _, _ = run_optimiser(graph, subarray_number, node_number, seed)
+    for i, (seed) in enumerate(runs_to_do, start=1):
+        print(f"Running {i}/{total_runs}: Seed={seed}")
+        graph, _, _ = gl.ska_mid_full_graph()
+        _, _ = run_optimiser(graph, 2, seed)
 
 if __name__ == '__main__':
     main()

@@ -128,3 +128,19 @@ def ska_mid_graph():
     graph = euclidean_weight_assigner(graph, positions_3d)
 
     return graph, positions_3d, positions_2d
+
+
+def ska_mid_full_graph():
+    aastar_core = get_subarray_template("Mid_full_AA4")
+    antenna_names = aastar_core.array_config.names.data
+    antenna_names = [str(name) for name in antenna_names]
+    antenna_coords = aastar_core.array_config.xyz.values
+
+    positions_3d = {name: tuple(coord) for name, coord in zip(antenna_names, antenna_coords)}
+    positions_2d = {name: (coord[0], coord[1]) for name, coord in positions_3d.items()}
+    graph = nx.complete_graph(antenna_names)
+
+    # Assign graph weights by Euclidean distances between positions
+    graph = euclidean_weight_assigner(graph, positions_3d)
+
+    return graph, positions_3d, positions_2d
