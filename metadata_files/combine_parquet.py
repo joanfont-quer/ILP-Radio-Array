@@ -7,11 +7,11 @@ bin_key = False
 pd.set_option('display.max_columns', None)
 pd.set_option('display.width', None)
 
-files = ["/share/nas2_3/jfont/ILP-Radio-Array/metadata_files/metadata_compute-0-2.local_34293.parquet", 
-         "/share/nas2_3/jfont/ILP-Radio-Array/metadata_files/metadata_compute-0-2.local_24733.parquet", 
-         "/share/nas2_3/jfont/ILP-Radio-Array/metadata_files/metadata_compute-0-2.local_5005.parquet", 
-         "/share/nas2_3/jfont/ILP-Radio-Array/metadata_files/metadata_compute-0-2.local_4038.parquet", 
-         "/share/nas2_3/jfont/ILP-Radio-Array/metadata_files/metadata_compute-0-2.local_4038_1.parquet"]
+files = ["/metadata_files/metadata_compute-0-2.local_34293.parquet",
+         "/metadata_files/metadata_compute-0-2.local_24733.parquet",
+         "/metadata_files/metadata_compute-0-2.local_5005.parquet",
+         "/metadata_files/metadata_compute-0-2.local_4038.parquet",
+         "/metadata_files/metadata_compute-0-2.local_4038_1.parquet"]
 
 df_list = [pd.read_parquet(f, engine="fastparquet") for f in files]
 df = pd.concat(df_list, ignore_index=True)
@@ -28,7 +28,7 @@ best_df.to_parquet("metadata_combined.parquet", index=False)
 solutions_all = {}
 for metadata_path in files:
     suffix = metadata_path.split("metadata_")[-1].replace(".parquet", "")
-    solution_file = Path(f"/share/nas2_3/jfont/ILP-Radio-Array/solution_files/solutions_{suffix}.npz")
+    solution_file = Path(f"/solution_files/solutions_{suffix}.npz")
     if solution_file.exists():
         sols_part = dict(np.load(solution_file, allow_pickle=True))
         solutions_all.update(sols_part)

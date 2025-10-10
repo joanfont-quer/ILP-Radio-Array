@@ -68,10 +68,3 @@ def solver(graph):
         y, unassigned_node_list = assign_loop(y, graph, unassigned_node_list)
 
     return y
-
-
-
-G, positions = gl.generate_graph(100, 20)
-y = solver(G)
-vis.visualise_sol(y, positions,G)
-vis.visualise_bins(y, G, 10, 2)

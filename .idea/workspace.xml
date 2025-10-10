@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b785d18e-b379-4763-9cc6-1de858a01200" name="Changes" comment="Updated environment.yml file.">
+    <list default="true" id="b785d18e-b379-4763-9cc6-1de858a01200" name="Changes" comment="Added genetic algorithm implementation for the subarray problem. Mostly cleaned up benchmarking and PSF calculations (still some stuff left to clean).">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/environment.yml" beforeDir="false" afterPath="$PROJECT_DIR$/environment.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,7 +22,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="experiment" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -54,28 +53,40 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Python.bipartitioner_heuristic.executor": "Run",
+    "Python.genetic.executor": "Run",
+    "Python.genetic_check.executor": "Run",
     "Python.graph_loader.executor": "Run",
+    "Python.heuristic.executor": "Run",
+    "Python.interpolation_feel.executor": "Run",
     "Python.main.executor": "Run",
+    "Python.main2.executor": "Run",
+    "Python.multipart_evolutionary.executor": "Run",
     "Python.multipart_gurobi.executor": "Run",
     "Python.probability_stuff.executor": "Run",
     "Python.read_vla_pdf.executor": "Run",
+    "Python.ska_2_subarray.executor": "Run",
     "Python.test.executor": "Run",
+    "Python.wasserstein_test.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "database.data.extractors.current.export.id": "Comma-separated (CSV)_id",
     "database.data.extractors.current.id": "Comma-separated (CSV)_id",
-    "git-widget-placeholder": "experiment",
+    "git-widget-placeholder": "main",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyIntegratedToolsModulesConfigurable",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/plots" />
+      <recent name="$PROJECT_DIR$/metadata_files" />
+      <recent name="$PROJECT_DIR$/Results" />
+      <recent name="$PROJECT_DIR$/solution_files" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
@@ -106,14 +117,15 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.main" />
+        <item itemvalue="Python.main" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-09060db00ec0-JavaScript-PY-251.26927.74" />
-        <option value="bundled-python-sdk-657d8234b839-64d779b69b7a-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-251.26927.74" />
+        <option value="bundled-js-predefined-d6986cc7102b-09060db00ec0-JavaScript-PY-251.28774.16" />
+        <option value="bundled-python-sdk-14d54ed193d7-64d779b69b7a-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-251.28774.16" />
       </set>
     </attachedChunks>
   </component>
@@ -157,6 +169,9 @@
       <workItem from="1753794590789" duration="3217000" />
       <workItem from="1754571642165" duration="1600000" />
       <workItem from="1754913542440" duration="38057000" />
+      <workItem from="1759245188247" duration="30000" />
+      <workItem from="1759506237715" duration="46680000" />
+      <workItem from="1759743348124" duration="58454000" />
     </task>
     <task id="LOCAL-00001" summary="Commit">
       <option name="closed" value="true" />
@@ -214,7 +229,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754993676953</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Added genetic algorithm implementation for the subarray problem. Mostly cleaned up benchmarking and PSF calculations (still some stuff left to clean).">
+      <option name="closed" value="true" />
+      <created>1760102416264</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1760102416264</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -248,15 +271,24 @@
     <MESSAGE value="Added the visualisation technique used in other SKA literature. Also adapted the code to match baseline distributions in lambda space. Now SKA mid is one of the possible graphs in graph_loader.py" />
     <MESSAGE value="Changed main.py to quantify the effect of different amounts of nodes and subarrays." />
     <MESSAGE value="Updated environment.yml file." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated environment.yml file." />
+    <MESSAGE value="Added genetic algorithm implementation for the subarray problem. Mostly cleaned up benchmarking and PSF calculations (still some stuff left to clean)." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added genetic algorithm implementation for the subarray problem. Mostly cleaned up benchmarking and PSF calculations (still some stuff left to clean)." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ILP_Radio_Array$probability_stuff.coverage" NAME="probability_stuff Coverage Results" MODIFIED="1741968988087" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ILP_Radio_Array$test.coverage" NAME="test Coverage Results" MODIFIED="1753282695551" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/ILP_Radio_Array$graph_loader.coverage" NAME="graph_loader Coverage Results" MODIFIED="1752238206936" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/ILP_Radio_Array$bipartitioner_heuristic.coverage" NAME="bipartitioner_heuristic Coverage Results" MODIFIED="1742399846978" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Partitioner" />
+    <SUITE FILE_PATH="coverage/ILP_Radio_Array$genetic_check.coverage" NAME="genetic_check Coverage Results" MODIFIED="1760025891940" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ILP_Radio_Array$multipart_evolutionary.coverage" NAME="multipart_evolutionary Coverage Results" MODIFIED="1759516621779" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Partitioner" />
     <SUITE FILE_PATH="coverage/ILP_Radio_Array$read_vla_pdf.coverage" NAME="read_vla_pdf Coverage Results" MODIFIED="1741968635851" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/ILP_Radio_Array$main.coverage" NAME="main Coverage Results" MODIFIED="1754926379141" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ILP_Radio_Array$main.coverage" NAME="main Coverage Results" MODIFIED="1758551655646" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ILP_Radio_Array$interpolation_feel.coverage" NAME="interpolation_feel Coverage Results" MODIFIED="1758554789039" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ILP_Radio_Array$ska_2_subarray.coverage" NAME="ska_2_subarray Coverage Results" MODIFIED="1759757555478" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/configs" />
+    <SUITE FILE_PATH="coverage/ILP_Radio_Array$main2.coverage" NAME="main2 Coverage Results" MODIFIED="1760020374873" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ILP_Radio_Array$heuristic.coverage" NAME="heuristic Coverage Results" MODIFIED="1760027205829" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/configs" />
+    <SUITE FILE_PATH="coverage/ILP_Radio_Array$graph_loader.coverage" NAME="graph_loader Coverage Results" MODIFIED="1752238206936" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ILP_Radio_Array$wasserstein_test.coverage" NAME="wasserstein_test Coverage Results" MODIFIED="1758553256556" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ILP_Radio_Array$bipartitioner_heuristic.coverage" NAME="bipartitioner_heuristic Coverage Results" MODIFIED="1742399846978" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Partitioner" />
+    <SUITE FILE_PATH="coverage/ILP_Radio_Array$genetic.coverage" NAME="genetic Coverage Results" MODIFIED="1760027277419" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/configs" />
     <SUITE FILE_PATH="coverage/ILP_Radio_Array$multipart_gurobi.coverage" NAME="multipart_gurobi Coverage Results" MODIFIED="1752238564366" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Partitioner" />
   </component>
 </project>

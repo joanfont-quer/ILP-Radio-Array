@@ -10,11 +10,12 @@ def visualise_sol(solution, positions, graph):
     colour_map = [cmap(solution[node] % 10) for node in graph.nodes()]
 
     nx.draw(graph, positions, node_color=colour_map, with_labels=False, node_size=25, edgelist=[])
-    plt.savefig(f"/share/nas2_3/jfont/ILP-Radio-Array/Results/graph_partition_{time.time()}.png")
+    plt.savefig(f"/Users/user/PycharmProjects/ILP-Radio-Array//Results/graph_partition_{time.time()}.png")
 
 
-def visualise_bins(solution, graph, bin_number, subarray_number):
+def visualise_bins(solution, graph, bin_number):
     bins = bin_maker(graph, bin_number)
+    subarray_number = max(solution.values()) + 1
 
     bin_counts = {s: [] for s in range(subarray_number)}
 

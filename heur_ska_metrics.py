@@ -2,19 +2,9 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 import bisect
-import networkx as nx
 from ska_ost_array_config import get_subarray_template
 import graph_loader as gl
 from Partitioner.multipart_heuristic import wasserstein
-
-def wasserstein_true(x, y, p=1):
-    x_sorted = np.sort(x)
-    y_sorted = np.sort(y)
-    n = min(len(x_sorted), len(y_sorted))
-    if p == 1:
-        return stats.wasserstein_distance(x_sorted, y_sorted)
-    else:
-        return (np.mean(np.abs(x_sorted[:n] - y_sorted[:n]) ** p)) ** (1/p)
     
 
 def partition_size_metrics(partition_weights):
@@ -59,17 +49,11 @@ def compare(h_solution, current_ska):
     else:
         ska_ad_stat, ska_ad_p = np.nan, np.nan
 
-    h_pad_l1 = wasserstein(h_part_weight, p=1)
-    ska_pad_l1 = wasserstein(ska_part_weight, p=1)
+    h_pad_l1 = wasserstein(h_part_weight, {"p": 1, "alpha": 1})
+    ska_pad_l1 = wasserstein(ska_part_weight, {"p": 1, "alpha": 1})
 
-    h_pad_l2 = wasserstein(h_part_weight, p=2)
-    ska_pad_l2 = wasserstein(ska_part_weight, p=2)
-
-    h_true_l1 = wasserstein_true(h_part_weight[0], h_part_weight[1], p=1)
-    ska_true_l1 = wasserstein_true(ska_part_weight[0], ska_part_weight[1], p=1)
-
-    h_true_l2 = wasserstein_true(h_part_weight[0], h_part_weight[1], p=2)
-    ska_true_l2 = wasserstein_true(ska_part_weight[0], ska_part_weight[1], p=2)
+    h_pad_l2 = wasserstein(h_part_weight, {"p": 2, "alpha": 1})
+    ska_pad_l2 = wasserstein(ska_part_weight, {"p": 2, "alpha": 1})
 
     h_sizes, h_ranges, h_means = partition_size_metrics(h_part_weight)
     ska_sizes, ska_ranges, ska_means = partition_size_metrics(ska_part_weight)
@@ -84,10 +68,8 @@ def compare(h_solution, current_ska):
             "KS p-value",
             "Anderson–Darling Statistic",
             "Anderson–Darling p-value",
-            "Padded Wasserstein L1",
-            "Padded Wasserstein L2",
-            "True Wasserstein L1",
-            "True Wasserstein L2",
+            "Wasserstein L1",
+            "Wasserstein L2",
             "Partition size difference (edges)",
             "Partition range difference (max-min)",
         ],
@@ -98,8 +80,6 @@ def compare(h_solution, current_ska):
             ska_ad_p,
             ska_pad_l1,
             ska_pad_l2,
-            ska_true_l1,
-            ska_true_l2,
             ska_size_diff,
             ska_range_diff
         ],
@@ -110,8 +90,6 @@ def compare(h_solution, current_ska):
             h_ad_p,
             h_pad_l1,
             h_pad_l2,
-            h_true_l1,
-            h_true_l2,
             h_size_diff,
             h_range_diff
         ]
@@ -120,7 +98,7 @@ def compare(h_solution, current_ska):
 
 
 def main():
-    solutions = dict(np.load("/share/nas2_3/jfont/ILP-Radio-Array/solutions_heuristic_ska_full.npz", allow_pickle=True))
+    solutions = dict(np.load("/ILP-Radio-Array/solutions_heuristic_ska_full.npz", allow_pickle=True))
     print(solutions.items())
 
     key = "node197_sub2_seed137"

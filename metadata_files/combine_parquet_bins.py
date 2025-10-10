@@ -35,4 +35,4 @@ for metadata_path in files:
 best_keys = set(best_df["solution_key"])
 solutions_filtered = {k: v for k, v in solutions_all.items() if k in best_keys}
 
-np.savez_compressed("solution_files/solutions_bins.npz", **solutions_filtered)
+np.savez_compressed("../solution_files/solutions_bins.npz", **solutions_filtered)

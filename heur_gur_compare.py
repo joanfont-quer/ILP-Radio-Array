@@ -145,7 +145,7 @@ def compare_per_seed(node_num, subarray_number, seed):
     return results
 
 
-def main(node_num, subarray_number):
+def main(subarray_number):
 
     g_p_val = []
     h_p_val = []
@@ -271,4 +271,4 @@ def main(node_num, subarray_number):
 
 
 if __name__ == '__main__':
-    main(45, 2)
+    main(2)

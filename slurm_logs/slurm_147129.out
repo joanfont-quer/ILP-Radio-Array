@@ -1,6 +1,0 @@
-/share/nas2_3/jfont/ILP-Radio-Array
-Using license file: /share/nas2_3/jfont/.gurobi/wls.lic
->>> Activating environment
->>> Starting job 1
-/share/nas2_3/jfont/miniconda3/envs/ILP-Radio-Array-3.10/lib/python3.10/abc.py:106: FutureWarning: xarray subclass Visibility should explicitly define __slots__
-  cls = super().__new__(mcls, name, bases, namespace, **kwargs)

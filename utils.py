@@ -13,6 +13,14 @@ from ska_ost_array_config.simulation_utils import (
     simulate_observation,
 )
 from ska_ost_array_config.UVW import UVW, plot_baseline_distribution, plot_uv_coverage
+import importlib.util
+
+def load_config(path):
+    spec = importlib.util.spec_from_file_location("config", path)
+    config = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(config)
+    return config
+
 
 def generate_similar_subarrays_uvselection_ks_method(
     full_array, n_sub_arrays, start_at_max=True

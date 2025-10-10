@@ -3,7 +3,6 @@ import networkx as nx
 import matplotlib.pyplot as plt
 import itertools
 from ska_ost_array_config import get_subarray_template
-from visualisation import visualise_sol
 
 
 def euclidean_distance(u, v):

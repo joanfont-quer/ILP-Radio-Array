@@ -1,125 +1,122 @@
 import random
 import bisect
 import numpy as np
+from scipy.stats._stats_py import _cdf_distance
 
 
-def wasserstein(partition_weights, p):
+def wasserstein(partition_weights, params):
     """
-    Computes the pairwise Wasserstein distance of order 'p' between all pairs of partitions.
+        Computes the pairwise Wasserstein distance of order 'p' between all pairs of partitions.
 
-    Args:
-        partition_weights (dict): Dictionary with ordered edge weights for each partition.
-        p (float): Order of Wasserstein distance.
+        Args:
+            partition_weights (dict): Dictionary with ordered edge weights for each partition.
+            params (dict): Dictionary containing objective parameters:
+                - 'p' (float): Order of Wasserstein distance.
+                - 'alpha' (float): Parameter controlling penalty on variance of the partition sizes.
 
-    Returns:
-        float: Total sum of pairwise Wasserstein distances across all partitions.
-    """
+        Returns:
+            float: Total sum of pairwise Wasserstein distances across all partitions, plus the penalty term on
+                   partition imbalances.
+        """
+    p = params.get('p', 1.0)
+    alpha = params.get('alpha', 1.0)
+
     total = 0.0
     partitions = list(partition_weights.keys())
     for i in range(len(partitions)):
-        for j in range(i+1, len(partitions)):
+        for j in range(i + 1, len(partitions)):
             w_i = np.array(partition_weights[partitions[i]])
             w_j = np.array(partition_weights[partitions[j]])
 
-            if len(w_i) == 0 and len(w_j) == 0:
-                continue
-            elif len(w_i) > len(w_j):
-                w_j = np.pad(w_j, (0, len(w_i) - len(w_j)), 'constant')
-            elif len(w_j) > len(w_i):
-                w_i = np.pad(w_i, (0, len(w_j) - len(w_i)), 'constant')
+            if (len(w_i) == 0) or (len(w_j) == 0):
+                total += 1e6
+            else:
+                wasserstein_p = _cdf_distance(p, w_i, w_j)
 
-            total += np.mean(np.abs(w_i - w_j) ** p) ** (1/p)
-    return total
-
-
-def update_partition_weights(graph, y, partition_weights, node):
-    """
-    Updates the weight list of the partition containing 'node' by including the weights of edges connecting 'node' to
-    its neighbours in the same partition.
-
-    Args:
-        graph (networkx.Graph): The input graph.
-        y (list): Partition assignment list for each node.
-        partition_weights (dict): Dictionary with ordered edge weights for each partition.
-        node (int): Node to update the weight dictionary for.
-
-    Returns:
-        dict: Updated partition_weights with new weights from `node`.
-    """
-    for neighbor in graph.neighbors(node):
-        if y[neighbor] == y[node]:
-            bisect.insort(partition_weights[y[node]], graph[node][neighbor]['weight'])
-    return partition_weights
+                total += wasserstein_p
+    sizes = np.array([len(partition_weights[part]) for part in partitions])
+    return total + alpha * np.var(sizes)
 
 
-def assign_node(graph, y, unassigned, partition_weights, partition_number, p):
-    """
-    Assigns one unassigned node to a partition while minimising the overall Wasserstein cost.
+class HeuristicGraphPartitioner:
+    def __init__(self, graph, partition_number, objective, objective_parameters, seed=42):
+        """
+        Graph partitioning solver that uses greedy assignment with a user-defined objective function.
+        Args:
+            graph (networkx.Graph): The input weighted graph.
+            partition_number (int): Number of partitions to divide the graph into.
+            objective (callable): Objective function to evaluate partition quality (to be minimised).
+            objective_parameters (dict): Dictionary containing objective parameters.
+            seed (int): Random seed used for reproducibility.
+        """
+        self.graph = graph
+        self.unassigned = list(graph.nodes())
+        self.y = {node: -1 for node in graph.nodes()}
+        self.partition_number = partition_number
+        self.partition_weights = {g: [] for g in range(partition_number)}
+        self.objective = objective
+        self.objective_parameters = objective_parameters
+        self.seed = seed
+        random.seed(seed)
 
-    Args:
-        graph (networkx.Graph): The input graph.
-        y (list): Partition assignment list for each node.
-        unassigned (list): List of unassigned node indices.
-        partition_weights (dict): Dictionary with ordered edge weights for each partition.
-        partition_number (int): Number of partitions.
-        p (float): Order of Wasserstein distance.
+    def assign_node(self):
+        """
+        Assigns one unassigned node to a partition while minimising the overall Wasserstein cost.
 
-    Returns:
-        Tuple: Updated y, unassigned, and partition_weights after assignment.
-    """
-    best_dist = float('inf')
-    best_assignment = None, None
-    new_partition_weights = None
+        The method evaluates each candidate assignment of every unassigned node to every partition. For each trial,
+        edge weights are temporarily added to the target partition, the objective is computed, and the insertion is
+        rolled back. After exploring all possible options, the best assignment is commited to permanently.
+        """
+        best_dist = float('inf')
+        best_assignment = (None, None, None)
 
-    for node in unassigned:
-        for partition in range(partition_number):
-            y_temp = y.copy()
-            y_temp[node] = partition
+        for node in self.unassigned:
+            for partition in range(self.partition_number):
+                added_weights = []
+                self.y[node] = partition
 
-            temp_weights = {k: v.copy() for k, v in partition_weights.items()}
-            temp_weights = update_partition_weights(graph, y_temp, temp_weights, node)
+                for neighbor in self.graph.neighbors(node):
+                    if self.y[neighbor] == partition:
+                        w = self.graph[node][neighbor]['weight']
+                        bisect.insort(self.partition_weights[partition], w)
+                        added_weights.append(w)
 
-            current_dist = wasserstein(temp_weights, p)
-            if current_dist < best_dist:
-                best_dist = current_dist
-                best_assignment = node, partition
-                new_partition_weights = temp_weights
+                current_dist = self.objective(self.partition_weights, self.objective_parameters)
+                if current_dist < best_dist:
+                    best_dist = current_dist
+                    best_assignment = (node, partition, added_weights.copy())
 
-    node, partition = best_assignment
-    y[node] = partition
-    unassigned.remove(node)
-    partition_weights = new_partition_weights
-    return y, unassigned, partition_weights
+                # Roll back weights to before assignment trial
+                for w in added_weights:
+                    self.partition_weights[partition].remove(w)
+                self.y[node] = -1
+
+        node, partition, added_weights = best_assignment
+        self.y[node] = partition
+        self.unassigned.remove(node)
+        for w in added_weights:
+            bisect.insort(self.partition_weights[partition], w)
 
 
-def solver(graph, partition_num, p=1.0, seed=42):
-    """
-    Assigns all nodes in a graph to 'partition_num' partitions such that the total Wasserstein distance of order 'p'
-    between partition edge weight distributions is approximately minimised.
+    def solve(self):
+        """
+        Executes the greedy partitioning algorithm until all nodes are assigned.
 
-    Args:
-        graph (networkx.Graph): The input graph.
-        partition_num (int): Number of partitions.
-        p (float): Wasserstein order.
-        seed (int): Random seed.
+        The algorithm begins by randomly assigning one node to each partition. Then, while unassigned nodes remain, it
+        repeatedly assigns a node to a partition such that it minimises the selected objective.
 
-    Returns:
-        Tuple: Final partition assignments (list) and total Wasserstein cost (float).
-    """
-    random.seed(seed)
-    unassigned = list(graph.nodes())
+        Returns:
+            tuple : (y, cost)
+            y (dict): Dictionary mapping nodes to their assigned partitions.
+            cost (float): Final value of the objective function after all assignments.
+        """
+        for partition in range(self.partition_number):
+            node = random.choice(self.unassigned)
+            self.y[node] = partition
+            self.unassigned.remove(node)
 
-    y = {node: -1 for node in graph.nodes()}
+        while len(self.unassigned) > 0:
+            self.assign_node()
 
-    for partition in range(partition_num):
-        node = random.choice(unassigned)
-        y[node] = partition
-        unassigned.remove(node)
-
-    partition_weights = {g: [] for g in range(partition_num)}
-
-    while len(unassigned) > 0:
-        y, unassigned, partition_weights = assign_node(graph, y, unassigned, partition_weights, partition_num, p)
-
-    cost = wasserstein(partition_weights, p)
-    return y, cost
+        cost = self.objective(self.partition_weights, self.objective_parameters)
+        return self.y, cost
