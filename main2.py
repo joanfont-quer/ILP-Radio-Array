@@ -13,5 +13,6 @@ ga.save_history("gen_history.pkl")
 
 x, f = ga.best_solution()
 solution_dict = {node: part for node, part in zip(ga.problem.nodes, x)}
+
 vis.visualise_sol(solution_dict, positions_2d, graph)
 vis.visualise_bins(solution_dict, graph, 50)
