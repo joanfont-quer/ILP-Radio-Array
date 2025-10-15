@@ -1,0 +1,12 @@
+{
+  "NAME": "genetic",
+  "HERE": "/Users/user/PycharmProjects/ILP-Radio-Array/configs",
+  "RESULTS_FILE": "/Users/user/PycharmProjects/ILP-Radio-Array/ga_result.pkl",
+  "OBJECTIVE": "wasserstein",
+  "OBJECTIVE_PARAMETERS": {
+    "p": 1,
+    "alpha": 1
+  },
+  "POP_SIZE": 100,
+  "N_GEN": 650
+}
