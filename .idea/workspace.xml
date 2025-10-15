@@ -6,6 +6,20 @@
   <component name="ChangeListManager">
     <list default="true" id="b785d18e-b379-4763-9cc6-1de858a01200" name="Changes" comment="Added genetic algorithm implementation for the subarray problem. Mostly cleaned up benchmarking and PSF calculations (still some stuff left to clean).">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Partitioner/bipartitioner_heuristic.py" beforeDir="false" afterPath="$PROJECT_DIR$/Partitioner/bipartitioner_heuristic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Partitioner/multipart_evolutionary.py" beforeDir="false" afterPath="$PROJECT_DIR$/Partitioner/multipart_evolutionary.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Partitioner/multipart_heuristic.py" beforeDir="false" afterPath="$PROJECT_DIR$/Partitioner/multipart_heuristic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/benchmarking/partition_quality_metrics.py" beforeDir="false" afterPath="$PROJECT_DIR$/benchmarking/partition_quality_metrics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configs/genetic.py" beforeDir="false" afterPath="$PROJECT_DIR$/configs/genetic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configs/gurobi.py" beforeDir="false" afterPath="$PROJECT_DIR$/configs/gurobi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configs/heuristic.py" beforeDir="false" afterPath="$PROJECT_DIR$/configs/heuristic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graph_loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/graph_loader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/heur_gur_compare.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/heur_ska_metrics.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main2.py" beforeDir="false" afterPath="$PROJECT_DIR$/main2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run_psf_benchmark.py" beforeDir="false" afterPath="$PROJECT_DIR$/run_psf_benchmark.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -237,7 +251,23 @@
       <option name="project" value="LOCAL" />
       <updated>1760102416264</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Added genetic algorithm implementation for the subarray problem. Mostly cleaned up benchmarking and PSF calculations (still some stuff left to clean).">
+      <option name="closed" value="true" />
+      <created>1760107547574</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1760107547574</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Added genetic algorithm implementation for the subarray problem. Mostly cleaned up benchmarking and PSF calculations (still some stuff left to clean).">
+      <option name="closed" value="true" />
+      <created>1760107657183</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1760107657183</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

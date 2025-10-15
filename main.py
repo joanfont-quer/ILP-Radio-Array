@@ -1,4 +1,3 @@
-from random import seed
 from Partitioner.multipart_heuristic import solver
 import graph_loader as gl
 import numpy as np

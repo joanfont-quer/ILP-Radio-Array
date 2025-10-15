@@ -1,6 +1,4 @@
 import random
-import graph_loader as gl
-import visualisation as vis
 import numpy as np
 
 

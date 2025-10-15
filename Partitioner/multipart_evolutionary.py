@@ -188,8 +188,8 @@ class GeneticAlgorithm:
 
         self.algorithm = GA(pop_size=self.pop_size,
                             sampling=IntegerRandomSampling(),
-                            crossover=UniformIntegerCrossover(),
-                            mutation=UniformIntegerMutation(prob=0.1)
+                            crossover=UniformIntegerCrossover(prob_exchange=0.5),
+                            mutation=UniformIntegerMutation(prob=1/len(self.problem.nodes))
                             )
 
         self.termination = get_termination("n_gen", self.n_gen)
@@ -200,15 +200,20 @@ class GeneticAlgorithm:
                                self.algorithm,
                                self.termination,
                                seed=self.seed,
-                               save_history=True,
-                               callback=self.callback,
+                               save_history=False,
+                               # callback=self.callback,
                                verbose=verbose)
 
         with open("ga_result.pkl", "wb") as f:
             pkl.dump(self.result, f)
 
+        return self.best_solution()
+
     def best_solution(self):
-        return self.result.X, self.result.F
+        x, f = self.result.X, self.result.F
+        solution_dict = {node: part for node, part in zip(self.problem.nodes, x)}
+        f = float(np.ravel(f)[0])
+        return solution_dict, f
 
     def save_history(self, file_path):
         if self.result is None or not hasattr(self.result, "history"):

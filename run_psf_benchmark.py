@@ -42,7 +42,7 @@ def run_comparison(config):
 def main():
     start = time.time()
     parser = argparse.ArgumentParser(description="Compare PSFs between two configurations")
-    parser.add_argument("--config", required=True, help="Path to first configuration .py file")
+    parser.add_argument("--config", required=True, help="Path to configuration .py file")
 
     args = parser.parse_args()
 

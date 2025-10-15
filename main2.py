@@ -1,5 +1,5 @@
 from Partitioner.multipart_evolutionary import GeneticAlgorithm
-from Partitioner.multipart_heuristic import wasserstein
+from Partitioner.objectives import wasserstein
 import graph_loader as gl
 import visualisation as vis
 
@@ -11,8 +11,7 @@ ga = GeneticAlgorithm(graph, partition_number=2, objective=wasserstein, objectiv
 ga.solve()
 ga.save_history("gen_history.pkl")
 
-x, f = ga.best_solution()
-solution_dict = {node: part for node, part in zip(ga.problem.nodes, x)}
+solution_dict, f = ga.best_solution()
 
 vis.visualise_sol(solution_dict, positions_2d, graph)
 vis.visualise_bins(solution_dict, graph, 50)

@@ -38,41 +38,10 @@ def euclidean_weight_assigner(graph, positions):
     return graph
 
 
-def read_tsp_file(file_name):
-    """
-    Generates a graph from a given file with positional data for the nodes.
-    Args:
-        file_name: Name of the file.
-
-    returns:
-        graph: networkx graph
-    """
-    with open(file_name) as f:
-        lines = f.read().strip().split('\n')
-
-    positions = {}
-    for i, line in enumerate(lines):
-        if line.startswith("NODE_COORD_SECTION"):
-            display_data_section = lines[i + 1:]
-            for entry in display_data_section:
-                if entry.strip() == "EOF":
-                    break
-                parts = entry.split()
-                node = int(parts[0]) - 1
-                x, y = map(float, parts[1:])
-                positions[node] = (x, y)
-
-    n = len(positions)
-    graph = nx.complete_graph(n)
-
-    # Assign graph weights by Euclidean distances between positions
-    graph = euclidean_weight_assigner(graph, positions)
-    return graph, positions
-
-
 def generate_graph(node_num, seed=np.random.randint(1, 10000)):
     """
-    Generate a random graph in Euclidean space given the number of nodes
+    Generate a random graph in Euclidean space given the number of nodes.
+
     Args:
         node_num: number of nodes the graph should have
         seed: numpy seed for reproducibility, if no seed is provided, generate a random seed
@@ -93,7 +62,8 @@ def generate_graph(node_num, seed=np.random.randint(1, 10000)):
 
 
 def generate_graph_gaussian(node_num, seed=np.random.randint(1, 10000)):
-    """Generate a random graph in Euclidean space with the nodes distributed according to a Gaussian.
+    """
+    Generate a random graph in Euclidean space with the nodes distributed according to a Gaussian.
 
     Args:
         node_num (int): Desired number of nodes in the graph.
@@ -114,33 +84,23 @@ def generate_graph_gaussian(node_num, seed=np.random.randint(1, 10000)):
     return graph, positions
 
 
-def ska_mid_graph():
-    aastar_core = get_subarray_template("MID_INNER_R1KM_AASTAR")
-    antenna_names = aastar_core.array_config.names.data
-    antenna_names = [str(name) for name in antenna_names]
-    antenna_coords = aastar_core.array_config.xyz.values
+def ska_mid_graph_from_template(template_name):
+    subarray = get_subarray_template(template_name)
+    antenna_names = [str(name) for name in subarray.array_config.names.data]
+    antenna_coords = subarray.array_config.xyz.values
 
     positions_3d = {name: tuple(coord) for name, coord in zip(antenna_names, antenna_coords)}
     positions_2d = {name: (coord[0], coord[1]) for name, coord in positions_3d.items()}
-    graph = nx.complete_graph(antenna_names)
 
-    # Assign graph weights by Euclidean distances between positions
+    graph = nx.complete_graph(antenna_names)
     graph = euclidean_weight_assigner(graph, positions_3d)
 
     return graph, positions_3d, positions_2d
+
+
+def ska_mid_graph():
+    return ska_mid_graph_from_template("MID_INNER_R1KM_AASTAR")
 
 
 def ska_mid_full_graph():
-    aastar_core = get_subarray_template("Mid_full_AA4")
-    antenna_names = aastar_core.array_config.names.data
-    antenna_names = [str(name) for name in antenna_names]
-    antenna_coords = aastar_core.array_config.xyz.values
-
-    positions_3d = {name: tuple(coord) for name, coord in zip(antenna_names, antenna_coords)}
-    positions_2d = {name: (coord[0], coord[1]) for name, coord in positions_3d.items()}
-    graph = nx.complete_graph(antenna_names)
-
-    # Assign graph weights by Euclidean distances between positions
-    graph = euclidean_weight_assigner(graph, positions_3d)
-
-    return graph, positions_3d, positions_2d
+    return ska_mid_graph_from_template("Mid_full_AA4")
